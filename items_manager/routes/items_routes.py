@@ -10,7 +10,7 @@ conn = Connection()
 async def create_item(data:Item):
     data.created_at = data.updated_at = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
     instance = conn.create_record(data)
-    return {"message":f"Items {instance.id} created successfully at {data.created_at}"}
+    return {"message":f"Item {instance.id} created successfully"}
 
 @items.get('/item/{id}')
 async def get_item(id:int):
@@ -32,7 +32,7 @@ async def update_item(id:int, body:ItemPUT):
 async def delete_item(id:int):
     result = conn.delete_record(Item,id)
     if result:
-        return {"message":f"Item {id} deleted succesfully"}
+        return {"message":f"Item {id} deleted successfully"}
     return {"message":f"Item {id} could not be deleted, it seems tha it was deleted alredy."}
 
 
