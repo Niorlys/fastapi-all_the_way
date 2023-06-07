@@ -5,7 +5,7 @@ from typing import Type, Any, Union
 Pendant: Validations of field by unicity, etc using db!=0"""
 
 class Connection(redis.Redis):
-    def __init__(self,config=None):
+    def __init__(self,**config):
         """
             Basic config by default
             {
@@ -16,8 +16,6 @@ class Connection(redis.Redis):
             }
         """
         self.config = config
-        if not config:
-            return super().__init__()
         return super().__init__(**config)
     
     def create_record(self, instance:Any, attr_id:Union[int, None] =None, *fields:str):

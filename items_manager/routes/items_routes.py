@@ -2,9 +2,10 @@ from fastapi import APIRouter
 from database.connection import Connection
 from models.models import Item, datetime, ItemPUT
 from typing import Union
+import os
 
 items = APIRouter()
-conn = Connection()
+conn = Connection(host= os.environ.get('REDIS_HOST','localhost'))
 
 @items.post('/item')
 async def create_item(data:Item):
