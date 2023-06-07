@@ -1,7 +1,15 @@
 import pytest
 from httpx import AsyncClient
-from main import items_app
 from datetime import datetime, timedelta
+import sys
+import os
+
+
+path = os.environ.get('HOME')+'/fastapi-all_the_way'
+sys.path.append(path)
+sys.path.append(path+'/items_manager')
+from items_manager.main import items_app
+    
 
 
 @pytest.fixture
